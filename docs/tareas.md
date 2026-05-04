@@ -1,0 +1,5 @@
+- En la carpeta **blender** se crearán todos los scripts de py: `escena1.py`,`escena2.py`, `escenaX.py`.
+- En la carpta **matlab** para los scripts `.m`: `escena1mat.m`, `escena2mat.m`, `escenaXmat.m`.
+- Carpeta **datos** para los frames renderizados por Blender
+- Carpeta **salidas** para los resultados de MATLAB etiquetados `(\_salida)`.
+- Carpeta **docs** para archivos de documentación y otros.
