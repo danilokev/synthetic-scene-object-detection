@@ -1,0 +1,18 @@
+- Una persona que se encarga de hacer los scripts de Blender y las secuencias de frames. Parámetros aleatorios, animaciones, texturas, colores.
+- Otra persona que se encargue del desarrollo de los scripts de MATLAB
+- Yo pruebo los datos, puedo redactar el informe, documentar y generar los vídeo finales.
+- Se debe tener una carpeta con los frames generados y vídeos de salida de MATLAB.
+- Al ejecutar el script, blender debe renderizar los frames en formato PNG. Las salidas se guardarán en la carpeta de datos ignorada por Git (3 subcarpetas)
+	- /datos/escena1_1/ -> contiene frame_0001.png, frame_0002.png
+	- /datos/escena1_2/ -> contiene frame_0001.png, frame_0002.png
+	- /datos/escena1_3/ -> contiene frame_0001.png, frame_0002.png
+- En MATLAB hacer un pull al repositorio. Se deben tener los frames generados en la carpeta datos; ejecutar el script uno mismo para que te genere tu propia carpeta data o que te los pasen.
+	- Debe leer los frames de una de las carpetas, detectar al menos las figuras "2D", calcular su centro y añadir una etiqueta
+	- Generará una nueva secuencia de salida anotada: /salidas/escena1_1_frames_salida/ -> `frame_0001_salida.png`, `frame_0002_salida.png` (SI LO QUEREMOS HACER ASÍ) 
+	- Se deben entregar las salidas en formato vídeo: SINO generar directamente el video final
+- **Escena 1 (3 pts):** Generar objetos aleatorios (cilindros, prismas, cubos, esferas, conos, toroides y "monkey") variando tamaño y posición. Todo debe ser de color blanco. MATLAB debe detectar al menos las figuras "2D", calcular su centro y etiquetarlas.
+- **Escena 2 (3 pts):** Cámara fija y luz en movimiento (generando sombras variables). Mismos objetos blancos. Analizar si el código de MATLAB de la Escena 1 sobrevive o requiere adaptaciones.
+- **Escena 3 (1 pt):** Iluminación a contraluz, cámara desde arriba, y suelo transparente/eliminado. Detectar usando la silueta.
+- **Escena 4 (1 pt):** Añadir colores aleatorios a los objetos (rojo, verde, azul, amarillo, naranja). Analizar si el color facilita o dificulta la segmentación.
+- **Escena 5 (2 pts):** Añadir texturas aleatorias (checker, brick, voronoi) a los objetos. Evaluar el impacto de la alta frecuencia visual en la detección.
+- **Escenas 6, 7 y 8 (Opcionales - hasta +5 pts):** Mimetismo de luz y objetos, mezcla de colores y texturas, y escenarios con oclusiones (donde se recomienda usar seguimiento temporal).
