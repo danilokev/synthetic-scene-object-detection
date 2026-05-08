@@ -8,7 +8,7 @@ import os
 # CONFIGURACIÓN BASE
 # --------------------------------------------------
 
-base_output_folder = r"C:\Users\PC\OneDrive\Escritorio\UNI\IVC\TrabajoIvc\salidas" #CAMBIAR ESTA RUTA!!
+base_output_folder = r"C:\Users\leigh\IVC\proyecto_ivc\datos" #CAMBIAR ESTA RUTA!!
 
 scene_names = ["escena2_1", "escena2_2", "escena2_3"]
 
