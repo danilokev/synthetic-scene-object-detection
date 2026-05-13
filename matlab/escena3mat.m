@@ -1,8 +1,8 @@
-%% ============================================================
-%%  ARCHIVO: escena3mat.m
-%%  Escena 3 – Vista cenital ortográfica, FONDO TRANSPARENTE
-%%  Detección de siluetas: canal alfa (RGBA PNG) o umbral Otsu
-%% ============================================================
+% ============================================================
+%  ARCHIVO: escena3mat.m
+%  Escena 3 – Vista cenital ortográfica, FONDO TRANSPARENTE
+%  Detección de siluetas: canal alfa (RGBA PNG) o umbral Otsu
+% ============================================================
 clear; clc; close all;
 
 dir_datos  = fullfile('datos',   'escena3');
@@ -30,10 +30,10 @@ for e = 1:numel(secs)
         [img, ~, alpha] = imread(fpath);
 
         if ~isempty(alpha) && numel(unique(alpha)) > 1
-            % --- Canal alfa disponible: silueta perfecta ---
+            % Canal alfa disponible: silueta perfecta
             bw = alpha > 128;
         else
-            % --- Fallback: umbralización de la imagen gris ---
+            % Fallback: umbralización de la imagen gris
             gris = rgb2gray(img);
             T = graythresh(gris);
             bw = imbinarize(gris, T);
@@ -83,6 +83,6 @@ for e = 1:numel(secs)
         writeVideo(vid, io);
     end
     close(vid);
-    fprintf('✓ %s_salida generada\n', nom);
+    fprintf(' %s_salida generada\n', nom);
 end
 fprintf('=== Escena 3 completa ===\n');

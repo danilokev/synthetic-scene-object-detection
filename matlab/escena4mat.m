@@ -1,9 +1,9 @@
-%% ============================================================
-%%  ARCHIVO: escena4mat.m
-%%  Escena 4 – Objetos de COLORES (rojo/verde/azul/amarillo/naranja)
-%%  sobre suelo BLANCO. Detección por saturación en espacio HSV.
-%%  El suelo blanco tiene S≈0; los objetos de color tienen S alto.
-%% ============================================================
+% ============================================================
+%  ARCHIVO: escena4mat.m
+%  Escena 4 – Objetos de COLORES (rojo/verde/azul/amarillo/naranja)
+%  sobre suelo BLANCO. Detección por saturación en espacio HSV.
+%  El suelo blanco tiene S≈0; los objetos de color tienen S alto.
+% ============================================================
 clear; clc; close all;
 
 dir_datos  = fullfile('datos',   'escena4');
@@ -80,6 +80,6 @@ for e = 1:numel(secs)
         writeVideo(vid, io);
     end
     close(vid);
-    fprintf('✓ %s_salida generada\n', nom);
+    fprintf(' %s_salida generada\n', nom);
 end
 fprintf('=== Escena 4 completa ===\n');

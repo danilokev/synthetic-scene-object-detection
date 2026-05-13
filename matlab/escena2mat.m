@@ -1,9 +1,9 @@
-%% ============================================================
-%%  ARCHIVO: escena2mat.m
-%%  Escena 2 – Objetos BLANCOS, cámara FIJA, luz en órbita
-%%  Mismo algoritmo que escena 1 + filtro de solidez para
-%%  rechazar sombras alargadas que aparecen en frames tardíos
-%% ============================================================
+% ============================================================
+%  ARCHIVO: escena2mat.m
+%  Escena 2 – Objetos BLANCOS, cámara FIJA, luz en órbita
+%  Mismo algoritmo que escena 1 + filtro de solidez para
+%  rechazar sombras alargadas que aparecen en frames tardíos
+% ============================================================
 clear; clc; close all;
 
 dir_datos  = fullfile('datos',   'escena2');
@@ -73,6 +73,6 @@ for e = 1:numel(secs)
         writeVideo(vid, io);
     end
     close(vid);
-    fprintf('✓ %s_salida generada\n', nom);
+    fprintf(' %s_salida generada\n', nom);
 end
 fprintf('=== Escena 2 completa ===\n');

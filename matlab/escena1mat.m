@@ -1,15 +1,9 @@
-% Escena 1 - MATLAB
-% Es necesario tener los frames generados por el script de Python para ejecutar este código. Carpeta: 'datos/'
-% Generar una nueva secuencia de salida en 'salidas/' para cada ejecución. Deben tener el sufijo '_salida'.
-% También en 'salidas/' se guardará un video con la secuencia de frames procesados, con el mismo sufijo '_salida'.
-
-
-%% ============================================================
-%%  ARCHIVO: escena1mat.m
-%%  Escena 1 – Objetos BLANCOS, cámara en órbita 90°
-%%  Detección: invertir imagen → umbralización Otsu → regionprops
-%%  Clasifica figuras 2D por circularidad y relación de aspecto
-%% ============================================================
+% ============================================================
+%  ARCHIVO: escena1mat.m
+%  Escena 1 – Objetos BLANCOS, cámara en órbita 90°
+%  Detección: invertir imagen → umbralización Otsu → regionprops
+%  Clasifica figuras 2D por circularidad y relación de aspecto
+% ============================================================
 clear; clc; close all;
 
 dir_datos  = fullfile('datos',   'escena1');
@@ -74,6 +68,6 @@ for e = 1:numel(secs)
         writeVideo(vid, io);
     end
     close(vid);
-    fprintf('✓ %s_salida generada\n', nom);
+    fprintf(' %s_salida generada\n', nom);
 end
 fprintf('=== Escena 1 completa ===\n');

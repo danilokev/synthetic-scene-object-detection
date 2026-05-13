@@ -1,11 +1,11 @@
-%% ============================================================
-%%  ARCHIVO: escena5mat.m
-%%  Escena 5 – Objetos con TEXTURAS (checker / brick / voronoi)
-%%  Mismos colores base que escena 4.
-%%  Las texturas fragmentan la región → más cierre morfológico
-%%  y umbral de saturación más bajo para no perder zonas blancas
-%%  de checker/brick.
-%% ============================================================
+% ============================================================
+%  ARCHIVO: escena5mat.m
+%  Escena 5 – Objetos con TEXTURAS (checker / brick / voronoi)
+%  Mismos colores base que escena 4.
+%  Las texturas fragmentan la región → más cierre morfológico
+%  y umbral de saturación más bajo para no perder zonas blancas
+%  de checker/brick.
+% ============================================================
 clear; clc; close all;
 
 dir_datos  = fullfile('datos',   'escena5');
@@ -83,6 +83,6 @@ for e = 1:numel(secs)
         writeVideo(vid, io);
     end
     close(vid);
-    fprintf('✓ %s_salida generada\n', nom);
+    fprintf(' %s_salida generada\n', nom);
 end
 fprintf('=== Escena 5 completa ===\n');

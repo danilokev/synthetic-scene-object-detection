@@ -8,7 +8,7 @@ import os
 # CONFIGURACIÓN BASE
 # --------------------------------------------------
 
-base_output_folder = r"C:\Users\leigh\IVC\proyecto_ivc\datos" #CAMBIAR ESTA RUTA!!
+base_output_folder = r"\datos" #CAMBIAR ESTA RUTA!!
 
 scene_names = ["escena5_1", "escena5_2", "escena5_3"]
 
@@ -309,5 +309,5 @@ for idx, sname in enumerate(scene_names):
         output_base = output_folder,
     )
 
-print("\n✓✓✓ Las 3 escenas de la Escena 5 han sido renderizadas correctamente.")
+print("\nLas 3 escenas de la Escena 5 han sido renderizadas correctamente.")
 print(f"Resultados en: {output_folder}")

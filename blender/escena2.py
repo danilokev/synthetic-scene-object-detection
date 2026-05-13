@@ -8,12 +8,12 @@ import os
 # CONFIGURACIÓN BASE
 # --------------------------------------------------
 
-base_output_folder = r"C:\Users\leigh\IVC\proyecto_ivc\datos" #CAMBIAR ESTA RUTA!!
+base_output_folder = r"\datos" #CAMBIAR ESTA RUTA!!
 
 scene_names = ["escena2_1", "escena2_2", "escena2_3"]
 
 NUM_OBJECTS = 12      # Mismo número que escena 1
-SEED_BASE   = 42      # Mismas semillas → mismos objetos que escena 1
+SEED_BASE   = 42      # Mismas semillas, mismos objetos que escena 1
 
 distance = 25.0       # Radio de la órbita de la luz (= distancia cámara escena 1)
 
@@ -33,10 +33,9 @@ def get_white_material():
     return mat
 
 
-# --------------------------------------------------
+# ------------------------------
 # CREACIÓN DE OBJETOS ALEATORIOS
-# (Idéntica a escena 1 — mismas semillas → misma disposición)
-# --------------------------------------------------
+# ------------------------------
 OBJECT_TYPES = [
     "CUBE",
     "CYLINDER",
@@ -111,7 +110,7 @@ def add_random_object(mat, pos_range=6.0, scale_min=0.4, scale_max=1.5):
 # --------------------------------------------------
 def render_scene(scene_name, seed, output_base):
 
-    # ---- Limpiar escena ----
+    # Limpiar escena 
     bpy.ops.object.select_all(action='SELECT')
     bpy.ops.object.delete(use_global=False)
 
@@ -121,11 +120,11 @@ def render_scene(scene_name, seed, output_base):
     scene = bpy.context.scene
     random.seed(seed)
 
-    # ---- Carpeta de salida ----
+    # Carpeta de salida 
     output_folder = os.path.join(output_base, scene_name)
     os.makedirs(output_folder, exist_ok=True)
 
-    # ---- Parámetros de animación ----
+    # Parámetros de animación 
     scene.frame_start      = 1
     scene.frame_end        = 10
     scene.render.fps       = 24
@@ -134,10 +133,10 @@ def render_scene(scene_name, seed, output_base):
 
     num_frames = scene.frame_end - scene.frame_start + 1
 
-    # ---- Material blanco ----
+    # Material blanco 
     white = get_white_material()
 
-    # ---- Suelo blanco ----
+    # Suelo blanco 
     bpy.ops.mesh.primitive_plane_add(size=40, location=(0, 0, 0))
     ground = bpy.context.object
     ground.name = "Ground"
@@ -146,21 +145,21 @@ def render_scene(scene_name, seed, output_base):
     else:
         ground.data.materials.append(white)
 
-    # ---- Objetos aleatorios (misma lógica y semilla que escena 1) ----
+    # Objetos aleatorios
     for _ in range(NUM_OBJECTS):
         add_random_object(white)
 
     # --------------------------------------------------
-    # LUZ PRINCIPAL (SUN) — se animará en órbita
-    # Posición inicial: cenital (θ = 90°) → lateral (θ = 0°)
+    # LUZ PRINCIPAL (SUN) - se animará en órbita
+    # Posición inicial: cenital (θ = 90°), lateral (θ = 0°)
     # Mismo arco que seguía la cámara en la escena 1.
     # --------------------------------------------------
     # Posición de arranque (frame 1): directamente encima
     bpy.ops.object.light_add(type='SUN', location=(0, 0, distance))
     sun = bpy.context.object
     sun.name = "OrbitSun"
-    sun.data.energy = 5.0          # algo más de energía para compensar la falta de relleno
-    sun.data.angle  = math.radians(3)   # sombras nítidas para análisis
+    sun.data.energy = 5.0 # alta compensar la falta de relleno
+    sun.data.angle  = math.radians(3) # sombras nítidas para análisis
 
     # Apuntar siempre al origen con TrackTo
     sun_target = bpy.data.objects.new("SunTarget", None)
@@ -172,12 +171,12 @@ def render_scene(scene_name, seed, output_base):
     sun_constraint.track_axis = 'TRACK_NEGATIVE_Z'
     sun_constraint.up_axis    = 'UP_Y'
 
-    # ---- Luz de ambiente muy tenue (evita negros absolutos) ----
+    # Luz de ambiente muy tenue (evita negros absolutos) 
     # Usamos un AREA de energía baja en posición fija cenital
     bpy.ops.object.light_add(type='AREA', location=(0, 0, distance * 0.6))
     ambient = bpy.context.object
     ambient.name = "AmbientFill"
-    ambient.data.energy = 40        # muy suave — sólo evita zonas en negro total
+    ambient.data.energy = 40 # muy suave, sólo evita zonas en negro total
     ambient.scale = (10, 10, 1)
     ambient.rotation_euler = (0, 0, 0)
 
@@ -204,7 +203,7 @@ def render_scene(scene_name, seed, output_base):
     cam_constraint.track_axis = 'TRACK_NEGATIVE_Z'
     cam_constraint.up_axis    = 'UP_Y'
 
-    # La cámara es FIJA → NO se insertan keyframes de posición
+    # La cámara es FIJA, NO se insertan keyframes de posición
 
     # --------------------------------------------------
     # ANIMACIÓN DE LA LUZ — misma trayectoria que la
@@ -253,9 +252,9 @@ os.makedirs(output_folder, exist_ok=True)
 for idx, sname in enumerate(scene_names):
     render_scene(
         scene_name  = sname,
-        seed        = SEED_BASE + idx,   # mismas semillas → misma distribución de objetos
+        seed        = SEED_BASE + idx,   # mismas semillas, misma distribución de objetos
         output_base = output_folder,
     )
 
-print("\n✓✓✓ Las 3 escenas de la escena 2 han sido renderizadas correctamente.")
+print("\nLas 3 escenas de la escena 2 han sido renderizadas correctamente.")
 print(f"Resultados en: {output_folder}")

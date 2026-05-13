@@ -8,12 +8,12 @@ import os
 # CONFIGURACIÓN BASE
 # --------------------------------------------------
 
-base_output_folder = r"C:\Users\leigh\IVC\proyecto_ivc\datos" #CAMBIAR ESTA RUTA!!
+base_output_folder = r"\datos" #CAMBIAR ESTA RUTA!!
 
 scene_names = ["escena3_1", "escena3_2", "escena3_3"]
 
 NUM_OBJECTS = 12
-SEED_BASE   = 42      # Mismas semillas → mismos objetos que escenas 1 y 2
+SEED_BASE   = 42
 
 distance = 25.0
 
@@ -33,9 +33,6 @@ def get_white_material():
     return mat
 
 
-# --------------------------------------------------
-# CREACIÓN DE OBJETOS ALEATORIOS (idéntica a escenas 1 y 2)
-# --------------------------------------------------
 OBJECT_TYPES = [
     "CUBE",
     "CYLINDER",
@@ -110,7 +107,7 @@ def add_random_object(mat, pos_range=6.0, scale_min=0.4, scale_max=1.5):
 # --------------------------------------------------
 def render_scene(scene_name, seed, output_base):
 
-    # ---- Limpiar escena ----
+    # Limpiar escena
     bpy.ops.object.select_all(action='SELECT')
     bpy.ops.object.delete(use_global=False)
 
@@ -120,11 +117,11 @@ def render_scene(scene_name, seed, output_base):
     scene = bpy.context.scene
     random.seed(seed)
 
-    # ---- Carpeta de salida ----
+    # Carpeta de salida
     output_folder = os.path.join(output_base, scene_name)
     os.makedirs(output_folder, exist_ok=True)
 
-    # ---- Parámetros de animación ----
+    # Parámetros de animación
     scene.frame_start         = 1
     scene.frame_end           = 10
     scene.render.fps          = 24
@@ -135,7 +132,7 @@ def render_scene(scene_name, seed, output_base):
 
     # --------------------------------------------------
     # FONDO TRANSPARENTE (canal alfa en PNG)
-    # Sin suelo → los objetos quedan recortados sobre
+    # Sin suelo: Los objetos quedan recortados sobre
     # fondo transparente/blanco para detección por silueta
     # --------------------------------------------------
     scene.render.film_transparent = True
@@ -165,7 +162,7 @@ def render_scene(scene_name, seed, output_base):
     # bsdf.inputs["Alpha"].default_value = 0.0
     # ground.data.materials.append(mat_transp)
 
-    # ---- Objetos aleatorios (misma lógica y semilla) ----
+    # Objetos aleatorios (misma lógica y semilla)
     for _ in range(NUM_OBJECTS):
         add_random_object(white)
 
@@ -198,7 +195,7 @@ def render_scene(scene_name, seed, output_base):
     toplight.rotation_euler = (0, 0, 0)
 
     # --------------------------------------------------
-    # CÁMARA FIJA — vista cenital (top-down, 90°)
+    # CÁMARA FIJA. vista cenital (top-down, 90°)
     # Apunta directamente hacia abajo desde Z = distance
     # --------------------------------------------------
     bpy.ops.object.camera_add(location=(0, 0, distance))
@@ -222,7 +219,7 @@ def render_scene(scene_name, seed, output_base):
     cam_constraint.track_axis = 'TRACK_NEGATIVE_Z'
     cam_constraint.up_axis    = 'UP_Y'
 
-    # Cámara FIJA → sin keyframes de posición
+    # Cámara FIJA, sin keyframes de posición
 
     # --------------------------------------------------
     # ANIMACIÓN DE LA LUZ A CONTRALUZ
@@ -260,7 +257,7 @@ def render_scene(scene_name, seed, output_base):
             for kp in fcurve.keyframe_points:
                 kp.interpolation = 'LINEAR'
 
-    # ---- Render ----
+    # Render
     scene.render.filepath = output_folder + "\\"
 
     print(f"\n{'='*50}")
@@ -288,5 +285,5 @@ for idx, sname in enumerate(scene_names):
         output_base = output_folder,
     )
 
-print("\n✓✓✓ Las 3 escenas de la escena 3 han sido renderizadas correctamente.")
+print("\nLas 3 escenas de la escena 3 han sido renderizadas correctamente.")
 print(f"Resultados en: {output_folder}")

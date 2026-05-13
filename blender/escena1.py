@@ -4,12 +4,11 @@ import random
 from mathutils import Vector
 import os
 
-
 # --------------------------------------------------
 # CONFIGURACIÓN BASE
 # --------------------------------------------------
 
-base_output_folder = r"C:\Users\leigh\IVC\proyecto_ivc\datos" #CAMBIAR ESTA RUTA!!
+base_output_folder = r"\datos" #CAMBIAR ESTA RUTA!!
 
 scene_names = ["escena1_1", "escena1_2", "escena1_3"]
 
@@ -17,7 +16,6 @@ NUM_OBJECTS = 12       # Objetos por escena
 SEED_BASE   = 42       # Semilla base (cada escena suma su índice)
 
 distance = 25.0
-
 
 # --------------------------------------------------
 # MATERIAL BLANCO (único, reutilizable)
@@ -32,7 +30,6 @@ def get_white_material():
     bsdf.inputs["Base Color"].default_value = (1, 1, 1, 1)
     bsdf.inputs["Roughness"].default_value  = 0.6
     return mat
-
 
 # --------------------------------------------------
 # CREACIÓN DE OBJETOS ALEATORIOS
@@ -233,9 +230,9 @@ os.makedirs(output_folder, exist_ok=True)
 for idx, sname in enumerate(scene_names):
     render_scene(
         scene_name  = sname,
-        seed        = SEED_BASE + idx,   # semilla distinta → objetos distintos
+        seed        = SEED_BASE + idx,   # semilla distinta, objetos distintos
         output_base = output_folder,
     )
 
-print("\n✓✓✓ Las 3 escenas han sido renderizadas correctamente.")
+print("\nLas 3 escenas han sido renderizadas correctamente.")
 print(f"Resultados en: {output_folder}")
